@@ -1,5 +1,7 @@
-import app from '../server.js'
+import express from 'express'
 import conexao from '../infra/conexao.js'
+
+const app = express()
 
 app.use(express.json())
 
@@ -17,3 +19,5 @@ app.get('/livros', (req, res) => {
         }
     })
 })
+
+export default app
