@@ -11,13 +11,27 @@ app.get('/', (req, res) => {
 })
 
 app.get('/livros', (req, res) => {
-    conexao.query('SELECT * FROM livros', (err, result) => {
+    const sql = 'SELECT * FROM livros'
+    conexao.query(sql, (err, result) => {
         if (err) {
             console.log(err)
         } else {
             res.json(result)
         }
     })
+})
+
+app.post('/livros', (req, res) => {
+    const livro = req.body
+    const sql = 'INSERT INTO livros SET ?'
+    conexao.query(sql, livro, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(result)
+        }
+    })
+
 })
 
 export default app
