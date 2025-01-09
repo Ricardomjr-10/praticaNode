@@ -46,5 +46,17 @@ app.post('/livros', (req, res) => {
 
 })
 
+app.put('/livros/:id', (req, res) => {
+    const id = req.params.id
+    const livro = req.body
+    const sql = 'UPDATE livros SET ? WHERE id = ?'
+    conexao.query(sql, [livro, id], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(result)
+        }
+    })
+})
 
 export default app
