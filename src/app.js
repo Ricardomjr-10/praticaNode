@@ -21,6 +21,18 @@ app.get('/livros', (req, res) => {
     })
 })
 
+app.get('/livros/:id', (req, res) => {
+    const id = req.params.id
+    const sql = 'SELECT * FROM livros WHERE id = ?'
+    conexao.query(sql, id, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(result)
+        }
+    })
+})
+
 app.post('/livros', (req, res) => {
     const livro = req.body
     const sql = 'INSERT INTO livros SET ?'
@@ -33,5 +45,6 @@ app.post('/livros', (req, res) => {
     })
 
 })
+
 
 export default app
