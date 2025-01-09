@@ -59,4 +59,16 @@ app.put('/livros/:id', (req, res) => {
     })
 })
 
+app.delete('/livros/:id', (req, res) => {
+    const id = req.params.id
+    const sql = 'DELETE FROM livros WHERE id = ?'
+    conexao.query(sql, id, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(result)
+        }
+    })
+})
+
 export default app
